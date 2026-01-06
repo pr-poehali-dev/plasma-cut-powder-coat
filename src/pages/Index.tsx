@@ -100,6 +100,14 @@ export default function Index() {
               >
                 Калькулятор
               </button>
+              <button
+                onClick={() => scrollToSection('reviews')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'reviews' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Отзывы
+              </button>
             </div>
             <Button onClick={() => scrollToSection('contacts')}>Связаться</Button>
           </div>
@@ -378,7 +386,140 @@ export default function Index() {
           </div>
         </section>
 
-        <section id="calculator" className="py-24 bg-background">
+        <section id="reviews" className="py-24 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-secondary mb-4">Отзывы клиентов</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Что говорят о нас наши клиенты
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Дмитрий Соколов</h4>
+                    <p className="text-sm text-muted-foreground">ООО "СтройМонтаж"</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Заказывали резку металлоконструкций для производственного цеха. Всё выполнено точно по чертежам, сроки соблюдены. Качество резки отличное, никаких претензий. Рекомендую!
+                </p>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Елена Морозова</h4>
+                    <p className="text-sm text-muted-foreground">ИП Морозова</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Делали у ребят объёмные буквы для вывески магазина. Порошковая покраска просто великолепная - яркий насыщенный цвет, покрытие ровное. Прошло полгода, выглядит как новая!
+                </p>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Александр Петров</h4>
+                    <p className="text-sm text-muted-foreground">ООО "ТехСервис"</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Постоянно заказываем детали для спецтехники. Оперативно, качественно, цены адекватные. Менеджеры всегда на связи, технологи грамотно консультируют. Надёжные партнёры!
+                </p>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Ирина Волкова</h4>
+                    <p className="text-sm text-muted-foreground">Дизайн-студия "Лофт"</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Изготавливали декоративные металлические элементы для интерьера. Сложные формы вырезали идеально! Покраска в нестандартный цвет - тон в тон с образцом. Очень довольны результатом.
+                </p>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Сергей Новиков</h4>
+                    <p className="text-sm text-muted-foreground">Частный заказчик</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Заказывал ограждение для террасы. Ребята помогли с разработкой эскиза, подобрали оптимальное решение. Монтаж прошёл быстро, забор получился красивый и крепкий. Спасибо!
+                </p>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Михаил Кузнецов</h4>
+                    <p className="text-sm text-muted-foreground">АО "МашПром"</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Сотрудничаем уже второй год. Выполняют большие объёмы резки и покраски для нашего производства. Всегда укладываются в сроки, качество стабильное. Профессионалы своего дела!
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="calculator" className="py-24 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
