@@ -244,23 +244,61 @@ export default function Index() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
               {[
-                { title: 'Металлоконструкции', desc: 'Резка и покраска каркасов зданий' },
-                { title: 'Детали машин', desc: 'Изготовление запчастей для спецтехники' },
-                { title: 'Декоративные элементы', desc: 'Художественная резка и окраска' },
-                { title: 'Рекламные конструкции', desc: 'Вывески и объемные буквы' },
-                { title: 'Мебельные детали', desc: 'Компоненты для металлической мебели' },
-                { title: 'Ограждения', desc: 'Заборы, перила, решетки' },
+                { 
+                  title: 'Ограждения и перила', 
+                  desc: 'Декоративные металлические конструкции с порошковой покраской',
+                  image: 'https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/00314690-309a-4e38-bff6-ac4aeab80084.jpg'
+                },
+                { 
+                  title: 'Металлоконструкции', 
+                  desc: 'Каркасы зданий с защитным покрытием',
+                  image: 'https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/66fcc714-1c8d-446b-82ac-4ac4f38b1551.jpg'
+                },
+                { 
+                  title: 'Сложная резка', 
+                  desc: 'Детали машин и запчасти для спецтехники',
+                  image: 'https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/1ca27cac-f59e-4b6e-8af0-ebf02e119220.jpg'
+                },
+                { 
+                  title: 'Рекламные конструкции', 
+                  desc: 'Объемные буквы и вывески',
+                  image: 'https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/b607d90d-624f-4a1f-ab49-72e13b35662c.jpg'
+                },
+                { 
+                  title: 'Мебельные детали', 
+                  desc: 'Компоненты для современной металлической мебели',
+                  image: 'https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/6c91855c-ca2b-42a1-8e76-477d12275dbf.jpg'
+                },
+                { 
+                  title: 'Промышленное оборудование', 
+                  desc: 'Детали для тяжелой техники',
+                  image: 'https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/b55e1b78-1ef4-4670-bc3d-f004e0e4000a.jpg'
+                },
               ].map((item, idx) => (
-                <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon name="FileCheck" size={24} className="text-primary" />
+                <Card key={idx} className="overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 duration-300">
+                  <div className="relative group">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <div className="p-6">
+                    <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  </div>
                 </Card>
               ))}
+            </div>
+
+            <div className="text-center">
+              <Button size="lg" variant="outline" onClick={() => scrollToSection('contacts')}>
+                <Icon name="MessageSquare" size={20} className="mr-2" />
+                Обсудить ваш проект
+              </Button>
             </div>
           </div>
         </section>
