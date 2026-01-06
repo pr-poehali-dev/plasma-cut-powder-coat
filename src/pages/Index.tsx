@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -7,6 +7,35 @@ import Icon from '@/components/ui/icon';
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState('home');
+  const [material, setMaterial] = useState('steel');
+  const [thickness, setThickness] = useState('3');
+  const [area, setArea] = useState('');
+  const [coating, setCoating] = useState(false);
+  const [color, setColor] = useState('standard');
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const calculatePrice = () => {
+    const areaNum = parseFloat(area) || 0;
+    const thicknessNum = parseFloat(thickness) || 0;
+    
+    let cuttingPrice = 0;
+    if (material === 'steel') {
+      cuttingPrice = areaNum * (50 + thicknessNum * 10);
+    } else if (material === 'stainless') {
+      cuttingPrice = areaNum * (80 + thicknessNum * 15);
+    } else if (material === 'aluminum') {
+      cuttingPrice = areaNum * (70 + thicknessNum * 12);
+    }
+    
+    let coatingPrice = 0;
+    if (coating) {
+      const baseCoating = areaNum * 350;
+      const colorMultiplier = color === 'standard' ? 1 : color === 'ral' ? 1.2 : 1.5;
+      coatingPrice = baseCoating * colorMultiplier;
+    }
+    
+    setTotalPrice(Math.round(cuttingPrice + coatingPrice));
+  };
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
@@ -62,6 +91,14 @@ export default function Index() {
                 }`}
               >
                 Контакты
+              </button>
+              <button
+                onClick={() => scrollToSection('calculator')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'calculator' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Калькулятор
               </button>
             </div>
             <Button onClick={() => scrollToSection('contacts')}>Связаться</Button>
@@ -298,6 +335,143 @@ export default function Index() {
                     </li>
                   </ul>
                 </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="calculator" className="py-24 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-secondary mb-4">Калькулятор стоимости</h2>
+                <p className="text-lg text-muted-foreground">
+                  Рассчитайте ориентировочную стоимость услуг онлайн
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold mb-6">Параметры заказа</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Тип металла</label>
+                      <select
+                        value={material}
+                        onChange={(e: ChangeEvent<HTMLSelectElement>) => setMaterial(e.target.value)}
+                        className="w-full p-2 border border-input rounded-md bg-background"
+                      >
+                        <option value="steel">Черная сталь</option>
+                        <option value="stainless">Нержавеющая сталь</option>
+                        <option value="aluminum">Алюминий</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Толщина металла (мм)</label>
+                      <Input
+                        type="number"
+                        value={thickness}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setThickness(e.target.value)}
+                        placeholder="3"
+                        min="0.5"
+                        max="50"
+                        step="0.5"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Площадь резки (м²)</label>
+                      <Input
+                        type="number"
+                        value={area}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setArea(e.target.value)}
+                        placeholder="1.5"
+                        min="0.1"
+                        step="0.1"
+                      />
+                    </div>
+
+                    <div className="border-t border-border pt-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <input
+                          type="checkbox"
+                          id="coating"
+                          checked={coating}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) => setCoating(e.target.checked)}
+                          className="w-5 h-5"
+                        />
+                        <label htmlFor="coating" className="text-sm font-semibold cursor-pointer">
+                          Добавить порошковую покраску
+                        </label>
+                      </div>
+
+                      {coating && (
+                        <div>
+                          <label className="text-sm font-semibold mb-2 block">Тип покрытия</label>
+                          <select
+                            value={color}
+                            onChange={(e: ChangeEvent<HTMLSelectElement>) => setColor(e.target.value)}
+                            className="w-full p-2 border border-input rounded-md bg-background"
+                          >
+                            <option value="standard">Стандартные цвета</option>
+                            <option value="ral">RAL каталог</option>
+                            <option value="special">Спецэффекты (металлик, текстура)</option>
+                          </select>
+                        </div>
+                      )}
+                    </div>
+
+                    <Button className="w-full" size="lg" onClick={calculatePrice}>
+                      <Icon name="Calculator" size={20} className="mr-2" />
+                      Рассчитать стоимость
+                    </Button>
+                  </div>
+                </Card>
+
+                <div className="space-y-6">
+                  <Card className="p-6 bg-primary/5 border-primary/20">
+                    <h3 className="text-xl font-bold mb-4">Итоговая стоимость</h3>
+                    <div className="text-5xl font-bold text-primary mb-2">
+                      {totalPrice > 0 ? `${totalPrice.toLocaleString('ru-RU')} ₽` : '—'}
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Ориентировочная стоимость без учёта НДС
+                    </p>
+                  </Card>
+
+                  <Card className="p-6">
+                    <h4 className="font-bold mb-3 flex items-center gap-2">
+                      <Icon name="Info" size={20} className="text-primary" />
+                      Базовые расценки
+                    </h4>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex justify-between pb-2 border-b border-border">
+                        <span className="text-muted-foreground">Плазменная резка стали</span>
+                        <span className="font-semibold">от 50 ₽/м²</span>
+                      </div>
+                      <div className="flex justify-between pb-2 border-b border-border">
+                        <span className="text-muted-foreground">Резка нержавейки</span>
+                        <span className="font-semibold">от 80 ₽/м²</span>
+                      </div>
+                      <div className="flex justify-between pb-2 border-b border-border">
+                        <span className="text-muted-foreground">Резка алюминия</span>
+                        <span className="font-semibold">от 70 ₽/м²</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Порошковая покраска</span>
+                        <span className="font-semibold">от 350 ₽/м²</span>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="p-6 bg-muted/30">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      * Окончательная цена рассчитывается индивидуально и зависит от сложности контуров, 
+                      объема заказа, срочности выполнения и других факторов. Для точного расчёта свяжитесь с нами.
+                    </p>
+                  </Card>
+                </div>
               </div>
             </div>
           </div>
