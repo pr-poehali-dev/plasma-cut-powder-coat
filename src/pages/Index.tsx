@@ -1,14 +1,404 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import Icon from '@/components/ui/icon';
 
-const Index = () => {
+export default function Index() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const scrollToSection = (id: string) => {
+    setActiveSection(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
+        <nav className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Icon name="Zap" size={28} className="text-primary" />
+              <span className="text-xl font-bold text-secondary">ПлазмаТех</span>
+            </div>
+            <div className="hidden md:flex items-center gap-8">
+              <button
+                onClick={() => scrollToSection('home')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'home' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Главная
+              </button>
+              <button
+                onClick={() => scrollToSection('services')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'services' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Услуги
+              </button>
+              <button
+                onClick={() => scrollToSection('portfolio')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'portfolio' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Портфолио
+              </button>
+              <button
+                onClick={() => scrollToSection('about')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'about' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                О компании
+              </button>
+              <button
+                onClick={() => scrollToSection('contacts')}
+                className={`text-sm font-semibold transition-colors ${
+                  activeSection === 'contacts' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Контакты
+              </button>
+            </div>
+            <Button onClick={() => scrollToSection('contacts')}>Связаться</Button>
+          </div>
+        </nav>
+      </header>
+
+      <main className="pt-20">
+        <section id="home" className="py-24 bg-gradient-to-b from-muted/50 to-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-5xl md:text-6xl font-bold text-secondary mb-6">
+                Плазменная резка и порошковая покраска металла
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Современное оборудование и высококвалифицированные специалисты для реализации проектов любой сложности
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button size="lg" onClick={() => scrollToSection('services')}>
+                  <Icon name="Settings" size={20} className="mr-2" />
+                  Наши услуги
+                </Button>
+                <Button size="lg" variant="outline" onClick={() => scrollToSection('portfolio')}>
+                  <Icon name="Image" size={20} className="mr-2" />
+                  Портфолио
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Icon name="Gauge" size={24} className="text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Высокая точность</h3>
+                <p className="text-sm text-muted-foreground">
+                  Современное оборудование обеспечивает точность реза до 0.1 мм
+                </p>
+              </Card>
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Icon name="Clock" size={24} className="text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Быстрые сроки</h3>
+                <p className="text-sm text-muted-foreground">
+                  Выполнение заказов в срок благодаря автоматизированному производству
+                </p>
+              </Card>
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Icon name="Award" size={24} className="text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Гарантия качества</h3>
+                <p className="text-sm text-muted-foreground">
+                  Контроль качества на всех этапах производства
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" className="py-24 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-secondary mb-4">Наши услуги</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Комплексные решения для металлообработки с использованием передовых технологий
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+                <img
+                  src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/5f3d4224-aa8b-42ec-a801-352af2ca68e3.jpg"
+                  alt="Плазменная резка металла"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Scissors" size={24} className="text-primary" />
+                    <h3 className="text-2xl font-bold">Плазменная резка</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">
+                    Высокоточная резка металла толщиной от 0.5 до 50 мм. Работаем с черными и цветными металлами.
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Icon name="Check" size={18} className="text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">ЧПУ станки с рабочим полем до 3000×1500 мм</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="Check" size={18} className="text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">Резка сложных контуров и отверстий</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="Check" size={18} className="text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">Минимальный нагрев и деформация металла</span>
+                    </li>
+                  </ul>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+                <img
+                  src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/c54b1b58-c53e-45b4-9d4f-d9cb794b22d9.jpg"
+                  alt="Порошковая покраска"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Paintbrush" size={24} className="text-primary" />
+                    <h3 className="text-2xl font-bold">Порошковая покраска</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">
+                    Качественное защитно-декоративное покрытие с широкой палитрой цветов и текстур.
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Icon name="Check" size={18} className="text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">Камера размером до 4000×2000×2500 мм</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="Check" size={18} className="text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">Более 500 цветов по каталогу RAL</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="Check" size={18} className="text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">Подготовка поверхности и грунтование</span>
+                    </li>
+                  </ul>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="portfolio" className="py-24 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-secondary mb-4">Портфолио работ</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Примеры выполненных проектов для различных отраслей промышленности
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {[
+                { title: 'Металлоконструкции', desc: 'Резка и покраска каркасов зданий' },
+                { title: 'Детали машин', desc: 'Изготовление запчастей для спецтехники' },
+                { title: 'Декоративные элементы', desc: 'Художественная резка и окраска' },
+                { title: 'Рекламные конструкции', desc: 'Вывески и объемные буквы' },
+                { title: 'Мебельные детали', desc: 'Компоненты для металлической мебели' },
+                { title: 'Ограждения', desc: 'Заборы, перила, решетки' },
+              ].map((item, idx) => (
+                <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Icon name="FileCheck" size={24} className="text-primary" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="py-24 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h2 className="text-4xl font-bold text-secondary mb-6">О компании</h2>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    Компания ПлазмаТех специализируется на высокоточной плазменной резке металла и профессиональной порошковой покраске. 
+                    Мы используем современное автоматизированное оборудование ведущих мировых производителей.
+                  </p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    Наш опыт и техническое оснащение позволяют выполнять заказы любой сложности в кратчайшие сроки 
+                    с гарантией высокого качества продукции.
+                  </p>
+                  <Button onClick={() => scrollToSection('contacts')}>
+                    <Icon name="Phone" size={18} className="mr-2" />
+                    Обсудить проект
+                  </Button>
+                </div>
+                <div>
+                  <img
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/c10e21ab-6806-4c58-8eb4-7745c3613a8c.jpg"
+                    alt="Производство"
+                    className="rounded-lg shadow-xl"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-16 grid md:grid-cols-2 gap-8">
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                    <Icon name="Cpu" size={24} className="text-primary" />
+                    Оборудование для резки
+                  </h3>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Icon name="ChevronRight" size={16} className="text-primary mt-1 flex-shrink-0" />
+                      <span>Плазменные станки с ЧПУ Hypertherm</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="ChevronRight" size={16} className="text-primary mt-1 flex-shrink-0" />
+                      <span>Системы автоматического раскроя металла</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="ChevronRight" size={16} className="text-primary mt-1 flex-shrink-0" />
+                      <span>Рабочие столы с автоматической очисткой</span>
+                    </li>
+                  </ul>
+                </Card>
+
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                    <Icon name="Droplet" size={24} className="text-primary" />
+                    Оборудование для покраски
+                  </h3>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Icon name="ChevronRight" size={16} className="text-primary mt-1 flex-shrink-0" />
+                      <span>Камера порошковой покраски с рекуперацией</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="ChevronRight" size={16} className="text-primary mt-1 flex-shrink-0" />
+                      <span>Конвейерная печь полимеризации</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="ChevronRight" size={16} className="text-primary mt-1 flex-shrink-0" />
+                      <span>Автоматическая линия химподготовки</span>
+                    </li>
+                  </ul>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacts" className="py-24 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-secondary mb-4">Контакты</h2>
+                <p className="text-lg text-muted-foreground">
+                  Свяжитесь с нами для обсуждения вашего проекта
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold mb-6">Напишите нам</h3>
+                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Ваше имя</label>
+                      <Input placeholder="Иван Иванов" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Телефон</label>
+                      <Input type="tel" placeholder="+7 (___) ___-__-__" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Email</label>
+                      <Input type="email" placeholder="example@mail.ru" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold mb-2 block">Сообщение</label>
+                      <Textarea placeholder="Опишите ваш проект..." rows={4} />
+                    </div>
+                    <Button className="w-full">
+                      <Icon name="Send" size={18} className="mr-2" />
+                      Отправить заявку
+                    </Button>
+                  </form>
+                </Card>
+
+                <div className="space-y-6">
+                  <Card className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon name="Phone" size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold mb-1">Телефон</h4>
+                        <p className="text-muted-foreground">+7 (495) 123-45-67</p>
+                        <p className="text-muted-foreground">+7 (495) 123-45-68</p>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon name="Mail" size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold mb-1">Email</h4>
+                        <p className="text-muted-foreground">info@plazmatech.ru</p>
+                        <p className="text-muted-foreground">order@plazmatech.ru</p>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon name="MapPin" size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold mb-1">Адрес</h4>
+                        <p className="text-muted-foreground">г. Москва, ул. Промышленная, д. 15</p>
+                        <p className="text-sm text-muted-foreground mt-2">Пн-Пт: 9:00 - 18:00</p>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-secondary text-white py-8">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Icon name="Zap" size={24} className="text-primary" />
+              <span className="font-bold">ПлазмаТех</span>
+            </div>
+            <p className="text-sm text-white/70">
+              © 2024 ПлазмаТех. Все права защищены.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
-};
-
-export default Index;
+}
