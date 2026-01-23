@@ -768,17 +768,40 @@ const Index = () => {
                 </form>
               </Card>
 
-              <div className="mt-12 text-center space-y-4">
-                <div className="flex items-center justify-center gap-3">
-                  <Icon name="Phone" size={20} className="text-primary" />
-                  <a href="tel:+79991234567" className="text-lg font-semibold hover:text-primary transition-colors">
-                    +7 (999) 123-45-67
-                  </a>
+              <div className="mt-12 space-y-6">
+                <div className="text-center space-y-4">
+                  <div className="flex items-center justify-center gap-3">
+                    <Icon name="Phone" size={20} className="text-primary" />
+                    <a href="tel:+79280730331" className="text-lg font-semibold hover:text-primary transition-colors">
+                      +7 (928) 073-03-31
+                    </a>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <Icon name="Mail" size={20} className="text-primary" />
+                    <a href="mailto:info@stonetree.ru" className="text-lg font-semibold hover:text-primary transition-colors">
+                      info@stonetree.ru
+                    </a>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-3">
-                  <Icon name="Mail" size={20} className="text-primary" />
-                  <a href="mailto:info@stonetree.ru" className="text-lg font-semibold hover:text-primary transition-colors">
-                    info@stonetree.ru
+
+                <div className="flex justify-center gap-4">
+                  <a 
+                    href="https://wa.me/79280730331" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-lg hover:bg-[#20BA5A] transition-colors"
+                  >
+                    <Icon name="MessageCircle" size={20} />
+                    <span className="font-semibold">WhatsApp</span>
+                  </a>
+                  <a 
+                    href="https://t.me/+79280730331" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 bg-[#0088cc] text-white rounded-lg hover:bg-[#0077b5] transition-colors"
+                  >
+                    <Icon name="Send" size={20} />
+                    <span className="font-semibold">Telegram</span>
                   </a>
                 </div>
               </div>
