@@ -129,7 +129,7 @@ const Index = () => {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <Icon name="Trees" size={24} className="text-primary-foreground" />
               </div>
-              <span className="text-2xl font-bold text-secondary">Мебель</span>
+              <span className="text-2xl font-bold text-secondary">StoneTree</span>
             </div>
 
             <div className="hidden md:flex items-center gap-8">
@@ -212,7 +212,7 @@ const Index = () => {
         <section id="home" className="min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-background via-muted/20 to-accent/10">
           <div className="container mx-auto px-6 py-20 text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-secondary mb-6 leading-tight">
-              Мебель на заказ<br />по индивидуальным размерам
+              StoneTree — мебель на заказ<br />по индивидуальным размерам
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
               Кухни, шкафы, комоды и кровати в современном стиле
@@ -655,7 +655,7 @@ const Index = () => {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">Наши преимущества</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Почему выбирают нас
+                Почему выбирают StoneTree
               </p>
             </div>
 
@@ -817,10 +817,10 @@ const Index = () => {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <Icon name="Trees" size={24} className="text-primary-foreground" />
               </div>
-              <span className="text-2xl font-bold">Мебель</span>
+              <span className="text-2xl font-bold">StoneTree</span>
             </div>
             <p className="text-sm opacity-80">
-              © 2026 Мебель. Производство мебели на заказ
+              © 2026 StoneTree. Производство мебели на заказ
             </p>
           </div>
         </div>
