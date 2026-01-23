@@ -19,7 +19,7 @@ const Index = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'categories', 'calculator', 'advantages', 'contact'];
+      const sections = ['home', 'categories', 'gallery', 'calculator', 'advantages', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -150,6 +150,14 @@ const Index = () => {
                 Категории
               </button>
               <button
+                onClick={() => scrollToSection('gallery')}
+                className={`text-sm font-medium transition-colors ${
+                  activeSection === 'gallery' ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+              >
+                Галерея
+              </button>
+              <button
                 onClick={() => scrollToSection('calculator')}
                 className={`text-sm font-medium transition-colors ${
                   activeSection === 'calculator' ? 'text-primary' : 'text-foreground hover:text-primary'
@@ -191,6 +199,7 @@ const Index = () => {
             <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
               <button onClick={() => scrollToSection('home')} className="text-left">Главная</button>
               <button onClick={() => scrollToSection('categories')} className="text-left">Категории</button>
+              <button onClick={() => scrollToSection('gallery')} className="text-left">Галерея</button>
               <button onClick={() => scrollToSection('calculator')} className="text-left">Калькулятор</button>
               <button onClick={() => scrollToSection('advantages')} className="text-left">Преимущества</button>
               <button onClick={() => scrollToSection('contact')} className="text-left">Контакты</button>
@@ -270,7 +279,173 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="calculator" className="py-24 bg-muted/30">
+        <section id="gallery" className="py-24 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">Наши проекты</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Реальные работы и отзывы довольных клиентов
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="overflow-hidden group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/f3c21254-6a70-4c37-a6d0-78d2daf40598.jpg"
+                    alt="Кухня для семьи Петровых"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Кухня для семьи Петровых</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Москва, 2025</p>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground italic">
+                    "Кухня получилась именно такой, как мы мечтали! Все размеры идеально подошли под нашу планировку. Качество материалов превосходное."
+                  </p>
+                  <p className="text-sm font-semibold mt-3">— Анна Петрова</p>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/b43a3768-4a6b-445a-87a5-9657a2f25bb5.jpg"
+                    alt="Гардеробная для квартиры"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Гардеробная для квартиры</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Санкт-Петербург, 2025</p>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground italic">
+                    "Вместительная гардеробная с продуманной системой хранения. Дизайнеры учли все наши пожелания. Монтаж прошёл быстро и аккуратно."
+                  </p>
+                  <p className="text-sm font-semibold mt-3">— Дмитрий Соколов</p>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/3b82eeb1-6b1e-47a6-82bb-d55dfabeea0f.jpg"
+                    alt="Спальня под ключ"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Спальня под ключ</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Казань, 2026</p>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground italic">
+                    "Заказывали кровать и комод. Всё выполнено качественно, цвет идеально подошёл к интерьеру. Особенно понравилась натуральная текстура дерева."
+                  </p>
+                  <p className="text-sm font-semibold mt-3">— Елена Морозова</p>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/a9d08535-1bc1-4461-a1a7-e96e7943dfc0.jpg"
+                    alt="Мебель для гостиной"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Мебель для гостиной</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Москва, 2025</p>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground italic">
+                    "Заказали комод и открытые полки. Современный минималистичный дизайн отлично вписался в интерьер. Очень довольны работой мастеров!"
+                  </p>
+                  <p className="text-sm font-semibold mt-3">— Игорь Волков</p>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/3b8a0cad-f50d-48c9-86e9-79ab3d5fea1d.jpg"
+                    alt="Премиальная гардеробная"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Премиальная гардеробная</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Екатеринбург, 2026</p>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground italic">
+                    "Роскошная гардеробная с LED-подсветкой! Система хранения продумана до мелочей. Использовали премиальную фурнитуру — всё работает безупречно."
+                  </p>
+                  <p className="text-sm font-semibold mt-3">— Мария Новикова</p>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/files/544ea8c3-7f2e-481e-b341-cdf7fa09a58f.jpg"
+                    alt="Кухня с островом"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Кухня с островом</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Новосибирск, 2025</p>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground italic">
+                    "Большая кухня с островом для нашего загородного дома. Столешница из натурального камня — просто восхитительна! Спасибо за профессионализм."
+                  </p>
+                  <p className="text-sm font-semibold mt-3">— Сергей Кузнецов</p>
+                </div>
+              </Card>
+            </div>
+
+            <div className="text-center mt-12">
+              <p className="text-lg text-muted-foreground mb-6">
+                Более 500 довольных клиентов по всей России
+              </p>
+              <Button size="lg" onClick={() => scrollToSection('contact')}>
+                Заказать свой проект
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section id="calculator" className="py-24 bg-background">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">Калькулятор мебели</h2>
