@@ -209,12 +209,19 @@ const Index = () => {
       </header>
 
       <main className="pt-20">
-        <section id="home" className="min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-background via-muted/20 to-accent/10">
-          <div className="container mx-auto px-6 py-20 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-secondary mb-6 leading-tight">
+        <section id="home" className="min-h-[90vh] flex items-center justify-center relative">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/bucket/0c66202f-fe8a-4840-9b53-e6a814f89e30.png)',
+              filter: 'brightness(0.4)'
+            }}
+          />
+          <div className="container mx-auto px-6 py-20 text-center relative z-10">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
               StoneTree — мебель на заказ<br />по индивидуальным размерам
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto drop-shadow-lg">
               Кухни, шкафы, комоды и кровати в современном стиле
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
