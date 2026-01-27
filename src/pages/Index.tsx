@@ -213,10 +213,10 @@ const Index = () => {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/bucket/0c66202f-fe8a-4840-9b53-e6a814f89e30.png)',
-              filter: 'brightness(0.4)'
+              backgroundImage: 'url(https://cdn.poehali.dev/projects/6903b4db-8217-4398-bc7c-bdc75f4401a9/bucket/0c66202f-fe8a-4840-9b53-e6a814f89e30.png)'
             }}
           />
+          <div className="absolute inset-0 bg-black/50" />
           <div className="container mx-auto px-6 py-20 text-center relative z-10">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
               StoneTree — мебель на заказ<br />по индивидуальным размерам
