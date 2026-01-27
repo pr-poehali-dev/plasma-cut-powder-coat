@@ -8,6 +8,14 @@ import Icon from '@/components/ui/icon';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentSlogan, setCurrentSlogan] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const slogans = [
+    'Размеры, материалы и дизайн — за несколько шагов',
+    'Продуманные решения для вашего дома',
+    'Кухни, шкафы, комоды и кровати в современном стиле'
+  ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -16,6 +24,17 @@ const Index = () => {
       setMobileMenuOpen(false);
     }
   };
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlogan((prev) => (prev + 1) % slogans.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [slogans.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -218,12 +237,15 @@ const Index = () => {
           />
           <div className="absolute inset-0 bg-black/50" />
           <div className="container mx-auto px-6 py-20 text-center relative z-10">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+            <h1 className={`text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               StoneTree — мебель на заказ<br />по индивидуальным размерам
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto drop-shadow-lg">
-              Кухни, шкафы, комоды и кровати в современном стиле
-            </p>
+            <div className="h-16 md:h-20 mb-12 flex items-center justify-center">
+              <p className={`text-xl md:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg transition-all duration-700 absolute ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                 key={currentSlogan}>
+                {slogans[currentSlogan]}
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" onClick={() => scrollToSection('calculator')} className="text-lg px-8">
                 Рассчитать стоимость
